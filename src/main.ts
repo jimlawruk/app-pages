@@ -5,9 +5,10 @@ import MapView from "@arcgis/core/views/MapView.js";
 import BasemapToggle from "@arcgis/core/widgets/BasemapToggle";
 import Locate from "@arcgis/core/widgets/Locate.js";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
+import Graphic from "@arcgis/core/Graphic.js";
+import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js";
 
 import { Chart, ChartItem } from 'chart.js/auto';
-import { ChartUtils } from './chart-utils.ts';
 import { MapUtils } from "./map-utils.ts";
 
 const map = new Map({
@@ -18,7 +19,7 @@ const view = new MapView({
   container: "mapViewDiv",
   map: map,
   zoom: 7,
-  center: [-78, 41],
+  center: [-78, 40.9],
 });
 
 var toggle = new BasemapToggle({
@@ -34,9 +35,41 @@ view.ui.add(locateBtn, "top-left");
 let mapServerUrl = "https://gis.penndot.gov/arcgis/rest/services/mapcore/map/MapServer";
 var mapUtils = new MapUtils();
 
-const lineLayer = new FeatureLayer(
+const graphicsLayer = new GraphicsLayer();
+ map.add(graphicsLayer);
+
+// Create a polygon geometry
+const totalityPolygon = {
+  type: "polygon",
+  rings: [
+    [-84.78529733178833,39.18473786742946],    
+    [-83.88250869272004,41.59996290505581],
+    [-80.80955546853916, 42.98072313608882],                   
+    [-77.47361701486463,44.27678949286133],
+    [-76.14214700220033, 42.97959286461707],
+    [-78.70876353738693,41.99859011116081],
+    [-80.51901858804607, 41.23678059159809],
+    [-83.12295001504654, 40.02893209859656]  
+    
+  ]
   
-);
+};
+
+const simpleFillSymbol = {
+  type: "simple-fill",
+  color: [200, 200, 200, 0.6],
+  outline: {
+      color: [200, 200, 200],
+      width: 1
+  }
+};
+
+const totalityGraphic = new Graphic((<any>{
+  geometry: totalityPolygon,
+  symbol: simpleFillSymbol,
+}));
+graphicsLayer.add(totalityGraphic);
+
 
 view.when(() => {
   var pointLayer = new FeatureLayer(
@@ -59,8 +92,6 @@ view.when(() => {
   map.add(pointLayer);
 
 });
-
-
 
 const config = {
   type: 'line',
