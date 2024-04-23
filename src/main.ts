@@ -4,9 +4,11 @@ import Map from "@arcgis/core/Map.js";
 import MapView from "@arcgis/core/views/MapView.js";
 import BasemapToggle from "@arcgis/core/widgets/BasemapToggle";
 import Locate from "@arcgis/core/widgets/Locate.js";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
 
 import { Chart, ChartItem } from 'chart.js/auto';
 import { ChartUtils } from './chart-utils.ts';
+import { MapUtils } from "./map-utils.ts";
 
 const map = new Map({
   basemap: "topo-vector",
@@ -15,7 +17,7 @@ const map = new Map({
 const view = new MapView({
   container: "mapViewDiv",
   map: map,
-  zoom: 8,
+  zoom: 7,
   center: [-78, 41],
 });
 
@@ -29,7 +31,36 @@ var locateBtn = new Locate({
 });
 view.ui.add(locateBtn, "top-left");
 
-var chartUtils = new ChartUtils();
+let mapServerUrl = "https://gis.penndot.gov/arcgis/rest/services/mapcore/map/MapServer";
+var mapUtils = new MapUtils();
+
+const lineLayer = new FeatureLayer(
+  
+);
+
+view.when(() => {
+  var pointLayer = new FeatureLayer(
+    (<any>mapUtils.getLayerDefinition(mapServerUrl, "gisdata.TRAFFIC_SITE_STATION", "tms_site_no", ["1575"]))
+  );
+
+  const markerRenderer = {
+    type: "simple",
+    symbol: {
+      type: "simple-marker",
+      size: 8,
+      color: [200, 0, 0, 1],
+      outline: {
+        color: [200, 0, 0],
+        width: 2,
+      },
+    },
+  };
+  pointLayer.renderer = (<any>markerRenderer);
+  map.add(pointLayer);
+
+});
+
+
 
 const config = {
   type: 'line',
