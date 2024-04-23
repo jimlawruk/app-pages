@@ -18,7 +18,7 @@ body,
   margin:auto;
 }
 
-#map-container, #chart-container {  
+.map-container, .chart-container {  
   height: 500px;  
 }
 
