@@ -50,21 +50,21 @@ const config = {
 
 const ctx = document.getElementById('chartCanvas') as ChartItem;
 
-const labels = chartUtils.months({count: 7});
+const labels = ['7-8 AM', '8-9 AM', '9-10 AM', '10-11 AM', '11-12 PM', '12-1 PM', '1-2 PM', '2-3 PM', '3-4 PM', '5-6 PM', '6-7 PM', '7-8 PM', '8-9 PM'];
   const data = {
   labels: labels,
-  datasets: [
+  datasets: [    
     {
-      label: 'Dataset 1',
-      data: [2,213,33,22,11],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgb(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: [12,21,3,12,11],
+      label: 'Northbound',
+      data: [764,1162,1791,2207,2175,2270,1889,1516,468,368,326,261,226],
       borderColor: 'rgb(54, 162, 235)',
       backgroundColor: 'rgb(54, 162, 235, 0.5)',
+    },
+    {
+      label: 'Southbound',
+      data: [311,287,289,317,340,319,293,204,1467,2168,2665,2451,1495,1,191,682],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 99, 132, 0.5)',
     }
   ]
 };
@@ -80,7 +80,7 @@ var chart = new Chart(ctx, {
       },
       title: {
         display: true,
-        text: 'Sample chart'
+        text: 'I-78 Traffic Volume in Crawford County, PA'
       }
     }
   },
