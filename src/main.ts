@@ -73,7 +73,7 @@ graphicsLayer.add(totalityGraphic);
 
 view.when(() => {
   var pointLayer = new FeatureLayer(
-    (<any>mapUtils.getLayerDefinition(mapServerUrl, "gisdata.TRAFFIC_SITE_STATION", "tms_site_no", ["1575"]))
+    (<any>mapUtils.getLayerDefinition(mapServerUrl, "gisdata.TRAFFIC_SITE_STATION", "tms_site_no", ["1575", "32057"]))
   );
 
   const markerRenderer = {
@@ -110,30 +110,58 @@ const config = {
   },
 };
 
-const ctx = document.getElementById('chartCanvas') as ChartItem;
+const ctx0079 = document.getElementById('chartCanvas0079') as ChartItem;
 
-const labels = ['7-8 AM', '8-9 AM', '9-10 AM', '10-11 AM', '11-12 PM', '12-1 PM', '1-2 PM', '2-3 PM', '3-4 PM', '5-6 PM', '6-7 PM', '7-8 PM', '8-9 PM'];
-  const data = {
+const labels = ['7-8 AM', '8-9 AM', '9-10 AM', '10-11 AM', '11-12 PM', '12-1 PM', '1-2 PM', '2-3 PM', '3-4 PM', '5-6 PM', '6-7 PM', '7-8 PM', '8-9 PM', '9-10 PM', '10-11 PM'];
+  const data0079 = {
+  labels: labels,
+  datasets: [    
+    {
+      label: 'April 8 North',
+      data: [764,1162,1791,2207,2175,2270,1889,1516,468,368,326,261,226,174,147],
+      borderColor: 'rgb(54, 162, 235)',
+      backgroundColor: 'rgb(54, 162, 235, 0.5)',
+    },
+    {
+      label: ' April 8 South',
+      data: [311,287,289,317,340,319,293,204,1467,2168,2665,2451,1495,1191,682],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 99, 132, 0.5)',
+    },
+    {
+      label: 'Normal Southbound',
+      data: [508,566,571,590,638,626,683,718,770,683,586,407,312,262,177,130,74],
+      borderColor: 'rgb(255, 99, 132, 0.3)',
+      backgroundColor: 'rgb(255, 99, 132, 0.1)',
+    }
+  ]
+};
+
+const ctx0015 = document.getElementById('chartCanvas0015') as ChartItem;
+
+var data0015 = {
   labels: labels,
   datasets: [    
     {
       label: 'Northbound',
-      data: [764,1162,1791,2207,2175,2270,1889,1516,468,368,326,261,226],
+      data: [386,527,725,781,731,653,474,342,273,324,294,207,176,141,127],
       borderColor: 'rgb(54, 162, 235)',
       backgroundColor: 'rgb(54, 162, 235, 0.5)',
     },
     {
       label: 'Southbound',
-      data: [311,287,289,317,340,319,293,204,1467,2168,2665,2451,1495,1,191,682],
+      data: [258,199,222,259,265,263,237,287,341,1109,1817,1840,1546,1012,429,230],
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgb(255, 99, 132, 0.5)',
     }
   ]
 };
 
-var chart = new Chart(ctx, {
+
+
+var chart0079 = new Chart(ctx0079, {
     type: 'line',
-  data: data,
+  data: data0079,
   options: {
     responsive: true,
     plugins: {
@@ -145,6 +173,22 @@ var chart = new Chart(ctx, {
         text: 'I-78 Traffic Volume in Crawford County, PA'
       }
     }
-  },
-   
+  },   
+});
+
+var chart0015 = new Chart(ctx0015, {
+  type: 'line',
+data: data0015,
+options: {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'I-15 Traffic Volume'
+    }
+  }
+},   
 });
