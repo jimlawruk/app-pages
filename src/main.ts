@@ -49,10 +49,8 @@ const totalityPolygon = {
     [-76.14214700220033, 42.97959286461707],
     [-78.70876353738693,41.99859011116081],
     [-80.51901858804607, 41.23678059159809],
-    [-83.12295001504654, 40.02893209859656]  
-    
-  ]
-  
+    [-83.12295001504654, 40.02893209859656]    
+  ]  
 };
 
 const simpleFillSymbol = {
@@ -71,9 +69,28 @@ const totalityGraphic = new Graphic((<any>{
 graphicsLayer.add(totalityGraphic);
 
 
+const labelClass = {  
+  symbol: {
+    type: "text",  
+    color: "navy",
+    haloColor: "navy",
+    haloSize: 0,
+    font: {
+       family: "Arial",
+       size: 8,
+       weight: 'normal'
+     }
+  },
+  labelPlacement: "above-center",
+  labelExpressionInfo: {
+    expression: "'Route: ' + $feature.ST_RT_NO"
+  },
+  
+};
+
 view.when(() => {
   var pointLayer = new FeatureLayer(
-    (<any>mapUtils.getLayerDefinition(mapServerUrl, "gisdata.TRAFFIC_SITE_STATION", "tms_site_no", ["1575", "32057"]))
+    (<any>mapUtils.getLayerDefinition(mapServerUrl, "gisdata.TRAFFIC_SITE_STATION", "tms_site_no", ["1575", "32057"], labelClass))
   );
 
   const markerRenderer = {
@@ -169,7 +186,7 @@ var chart0079 = new Chart(ctx0079, {
         position: 'top',
       },
       title: {
-        display: true,
+        display: false,
         text: 'I-78 Traffic Volume in Crawford County, PA'
       }
     }
