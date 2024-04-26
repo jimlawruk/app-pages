@@ -1,6 +1,6 @@
 export class MapUtils {
 
-    getLayerDefinition(mapServerUrl: string, dataSourceName: string, fieldName: string, items: string[]) {
+    getLayerDefinition(mapServerUrl: string, dataSourceName: string, fieldName: string, items: string[], labelClass: any) {
         var inClauseItems = items.map(function(x) {
           return "'" + x + "'";
         });
@@ -19,6 +19,7 @@ export class MapUtils {
               oidFields: "objectid",
             },
           },
+          labelingInfo: labelClass
         };
       }
 }
