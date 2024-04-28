@@ -1,31 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="//js.arcgis.com/4.27/esri/css/main.css" rel="stylesheet" type="text/css">
+    <link href="//js.arcgis.com/4.27/esri/css/main.css" rel="stylesheet" type="text/css" />
     <title>App Pages</title>
   </head>
   <body>
     <div id="app"></div>
     <div id="main-content">
-      <h2>Test Title</h2>
-      <p>Test Paragraph</p>
+      <h2>Solar Eclipse Traffic Disparities in Pennsylvania</h2>
+      <p>
+        The recent solar eclipse gave us rare but expected glimpse at unusual traffic disparities in PA. I used
+        PennDOT's
+        <a href="https://gis.penndot.gov/tire">Traffic Information Repository (TIRe)</a> to map and graph the hourly
+        directional traffic volume from April 8th. Below is a map of the locations of traffic counters for this post. I picked a sampling of counters in a variety of locations on highways going roughly north and south.
+      </p>
+      <h3>Locations of Traffic Counters Mentioned in this Post</h3>
       <div class="map-container">
         <div id="mapViewDiv"></div>
       </div>
       <p>Test Paragraph 2</p>
       <div class="chart-container">
-      <canvas id="chartCanvas0079"></canvas>
+        <canvas id="chartCanvas0079"></canvas>
       </div>
       <p>Test Paragraph 3</p>
-      <p>Test Paragraph 2</p>
+      <p>My family travelled through this Route 15 counter around 6 pm. Tioga county is pretty rural and this road is usually empty.  </p>
       <div class="chart-container">
-      <canvas id="chartCanvas0015"></canvas>
+        <canvas id="chartCanvas0015"></canvas>
       </div>
-      <p>Test Paragraph 3</p>
-  </div>
+      <p>&nbsp;</p>
+      <div class="chart-container">
+        <canvas id="chartCanvas0081"></canvas>
+      </div>
+      <p>&nbsp;</p>
+      <p>
+        A good follow-up project could be to compare the elipse to other events that cause this type of traffic
+        disparities, like a Penn State game or the Papal visit. If you have any events in mind to rival April 8th, send
+        them my way.
+      </p>
+      <p>&nbsp;</p>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
