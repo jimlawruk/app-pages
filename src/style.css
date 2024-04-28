@@ -3,6 +3,12 @@ h1 {
   line-height: 1.1;
 }
 
+h3 {
+  font-size: 14px;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
 
 html,
 body,
@@ -15,14 +21,14 @@ body,
 
 #main-content {
   max-width: 1000px;
-  margin:auto;
+  margin: auto;
 }
 
-.map-container, .chart-container {  
-  height: 500px;  
+.map-container,
+.chart-container {
+  height: 500px;
 }
 
-#body-container {  
-  text-align:center;
+#body-container {
+  text-align: center;
 }
-
