@@ -27,8 +27,31 @@ body,
 .map-container,
 .chart-container {
   height: 500px;
+  margin-bottom: 10px;
+}
+
+.map-container {
+  margin-bottom: 30px;
+}
+
+.chart-container {
+  margin-bottom: 10px;
 }
 
 #body-container {
   text-align: center;
+}
+
+.chart-outer-container {
+  border-width: 1px;
+  border-color: #aaa;
+  border-style: solid;
+  padding:10px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+
+.chart-outer-container p {
+  padding: 0px;
+  margin-top: 0px;
 }
