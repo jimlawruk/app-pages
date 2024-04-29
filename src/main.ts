@@ -12,20 +12,20 @@ import { Chart, ChartItem } from 'chart.js/auto';
 import { MapUtils } from "./map-utils.ts";
 
 const map = new Map({
-  basemap: "topo-vector",
+  basemap: "streets-navigation-vector",
 });
 
 const view = new MapView({
   container: "mapViewDiv",
   map: map,
-  zoom: 7,
+  zoom: 6,
   center: [-78, 40.9],
 });
 
 var toggle = new BasemapToggle({
   view: view,
 });
-view.ui.add(toggle, "bottom-right");
+//view.ui.add(toggle, "bottom-right");
 
 var locateBtn = new Locate({
   view: view,
@@ -90,7 +90,7 @@ const labelClass = {
 
 view.when(() => {
   var pointLayer = new FeatureLayer(
-    (<any>mapUtils.getLayerDefinition(mapServerUrl, "gisdata.TRAFFIC_SITE_STATION", "tms_site_no", ["1575", "32057", "2583"], labelClass))
+    (<any>mapUtils.getLayerDefinition(mapServerUrl, "gisdata.TRAFFIC_SITE_STATION", "tms_site_no", ["1575", "32057", "2583", "4750"], labelClass))
   );
 
   const markerRenderer = {
@@ -224,6 +224,39 @@ var data0081 = {
   ]
 };
 
+const ctx0083 = document.getElementById('chartCanvas0083') as ChartItem;
+
+var data0083 = {
+  labels: labels,
+  datasets: [    
+    {
+      label: 'Northbound',
+      data: [936,906,1063,1011,1073,1115,1155,1377,1608,1919,1698,1265,797,725,532,435,306],
+      borderColor: 'rgb(54, 162, 235)',
+      backgroundColor: 'rgb(54, 162, 235, 0.5)',
+    },
+    {
+      label: 'Southbound',
+      data: [1795,1464,1095,1014,907,946,919,998,885,936,915,793,635,704,842,777,736],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 99, 132, 0.5)',
+    },
+    {
+      label: 'Normal North',
+      data: [878,809,1090,1192,1321,1307,1325,1531,1934,2047,1933,1287,930,684,659,497,320],
+      borderColor: 'rgb(54, 162, 235, 0.3)',
+      backgroundColor: 'rgb(54, 162, 235, 0.1)',
+    },
+    {
+      label: 'Normal Southbound',
+      data: [1715,1447,1191,1098,1183,1204,1196,1261,1143,1171,1103,965,727,602,457,291,235],
+      borderColor: 'rgb(255, 99, 132, 0.3)',
+      backgroundColor: 'rgb(255, 99, 132, 0.1)',
+    }
+  ]
+};
+
+
 var chart0079 = new Chart(ctx0079, {
     type: 'line',
   data: data0079,
@@ -270,6 +303,23 @@ options: {
     title: {
       display: true,
       text: 'I-81 Traffic Volume in Lackawanna County, PA'
+    }
+  }
+},   
+});
+
+var chart0083 = new Chart(ctx0083, {
+  type: 'line',
+data: data0083,
+options: {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'I-83 Traffic Volume in York County, PA'
     }
   }
 },   
